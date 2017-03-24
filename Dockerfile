@@ -1,7 +1,14 @@
 FROM clojure:alpine
 
-# Based on https://github.com/Overbryd/docker-phantomjs-alpine/releases. Thanks!
-RUN apk add --no-cache fontconfig curl \
-    && cd /tmp \
-    && curl -L https://github.com/Overbryd/docker-phantomjs-alpine/releases/download/2.11/phantomjs-alpine-x86_64.tar.bz2 | tar xj \
-    && ln -s /tmp/phantomjs/phantomjs /usr/bin/phantomjs
+ENV PHANTOMJS_VERSION 2.1.1
+
+# Based on https://hub.docker.com/r/docksal/backstopjs/~/dockerfile/
+
+RUN apk add --no-cache curl fontconfig
+
+RUN echo "Downloading PhantomJS v${PHANTOMJS_VERSION}..." \
+    && curl -sL "https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.bz2" | tar jx \
+	  && mv phantomjs-${PHANTOMJS_VERSION}-linux-x86_64 /tmp/phantomjs \
+    && ln -s /tmp/phantomjs/bin/phantomjs /usr/bin/phantomjs \
+    && echo "Fixing PhantomJS on Alpine" \
+    && curl -sL "https://github.com/dustinblackman/phantomized/releases/download/${PHANTOMJS_VERSION}/dockerized-phantomjs.tar.gz" | tar zx -C /
