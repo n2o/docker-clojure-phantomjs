@@ -11,6 +11,6 @@ RUN echo "Downloading PhantomJS v${PHANTOMJS_VERSION}..." && \
     mv phantomjs-${PHANTOMJS_VERSION}-linux-x86_64 /tmp/phantomjs && \
     ln -s /tmp/phantomjs/bin/phantomjs /usr/bin/phantomjs && \
     echo "Fixing PhantomJS on Alpine" && \
-    curl -sL "https://github.com/dustinblackman/phantomized/releases/download/${PHANTOMJS_VERSION}/dockerized-phantomjs.tar.gz" | tar zx -C && /
+    curl -sL "https://github.com/dustinblackman/phantomized/releases/download/${PHANTOMJS_VERSION}/dockerized-phantomjs.tar.gz" | tar zx -C /
 
 
