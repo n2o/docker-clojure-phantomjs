@@ -22,7 +22,7 @@ should use the phantomjs runner to run the tests. We can do this by simply
 calling:
 
     lein doo phantom test once
-    
+
 Okay, let's bring the code and the container together to execute our tests:
 
 ```shell
